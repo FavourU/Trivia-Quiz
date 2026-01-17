@@ -1,35 +1,6 @@
 // app.js - UI Logic for Quiz Application
 
-// Quiz data with correct answers
-const quizQuestions = [
-  { 
-    id: 1, 
-    question: 'In which month is Valentine\'s Day celebrated?', 
-    correct: 'a) February' 
-  },
-  { 
-    id: 2, 
-    question: 'Which Roman God is often associated with love and fertility?', 
-    correct: 'c) Cupid' 
-  },
-  { 
-    id: 3, 
-    question: 'Which country is credited with starting the tradition of exchanging love notes on Valentine\'s Day?', 
-    correct: 'a) France' 
-  },
-  { 
-    id: 4, 
-    question: 'When was February 14 first declared to be Valentine\'s Day?', 
-    correct: 'b) 1537' 
-  },
-  { 
-    id: 5, 
-    question: 'What country has a holiday on the 14th of every month?', 
-    correct: 'c) South Korea' 
-  }
-];
-
-// Store user answers
+// Store user answers for later scoring
 let userAnswers = [];
 
 // Wait for DOM to load
@@ -45,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Timer management
   let currentTimer = null;
   let currentScreenId = null;
-  let currentQuestionNumber = 1;
   
   // Start button click handler
   startButton.addEventListener('click', startQuiz);
@@ -69,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start timer for first question
     startQuestionTimer('question1-screen');
     
-    console.log('Quiz started - Question 1 displayed with timer');
+    console.log('Quiz started - Question 1 displayed');
   }
   
   // Set up click handlers for answer buttons
@@ -103,18 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get selected answer text
     const selectedAnswer = clickedButton.textContent.trim();
     
-    // Get correct answer for this question
-    const correctAnswer = quizQuestions[questionNumber - 1].correct;
-    
     // Store answer
     userAnswers.push({
       question: questionNumber,
-      selected: selectedAnswer,
-      correct: correctAnswer
+      selected: selectedAnswer
     });
     
     console.log('Answer selected:', selectedAnswer);
-    console.log('Correct answer:', correctAnswer);
+    console.log('All answers so far:', userAnswers);
     
     // Stop timer
     if (currentTimer && currentTimer.isRunning()) {
@@ -126,19 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonArray = Array.from(allButtons);
     disableAllButtons(buttonArray);
     
-    // Highlight selected answer
+    // Highlight selected answer only
     clickedButton.classList.add('selected');
-    
-    // Show correct/incorrect feedback
-    allButtons.forEach(button => {
-      const buttonText = button.textContent.trim();
-      if (buttonText === correctAnswer) {
-        button.classList.add('correct');
-      }
-      if (buttonText === selectedAnswer && selectedAnswer !== correctAnswer) {
-        button.classList.add('incorrect');
-      }
-    });
     
     // Show next button
     nextButton.classList.remove('hidden');
@@ -196,12 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Store "no answer" for this question
     const questionNumber = parseInt(screenId.replace('question', '').replace('-screen', ''));
-    const correctAnswer = quizQuestions[questionNumber - 1].correct;
     
     userAnswers.push({
       question: questionNumber,
-      selected: 'No answer (time expired)',
-      correct: correctAnswer
+      selected: 'No answer (time expired)'
     });
     
     console.log('Time expired - no answer recorded');
@@ -265,16 +218,9 @@ function goToResults() {
     screen.classList.add('hidden');
   });
   
-  // Calculate score using TDD-tested function
-  const finalScore = calculateScore(window.userAnswers);
-  console.log('Final score:', finalScore);
-  console.log('User answers:', window.userAnswers);
-  
-  // Update score display
-  const scoreDisplay = document.getElementById('score-value');
-  if (scoreDisplay) {
-    scoreDisplay.textContent = finalScore;
-  }
+  // Log all answers for debugging (scoring will be implemented later)
+  console.log('Quiz completed!');
+  console.log('All user answers:', window.userAnswers);
   
   // Show results screen
   const resultsScreen = document.getElementById('results-screen');
