@@ -21,7 +21,7 @@ function calculateScore(userAnswers) {
   
   let correctCount = 0;
   userAnswers.forEach(answer => {
-    if (answer.selected === answer.correct) {
+    if (answer.isCorrect) {  
       correctCount++;
     }
   });
@@ -85,9 +85,8 @@ class TimerManager {
   }
 }
 
-// Export for BOTH Node.js AND Browser
+// Export for Node.js (Jest tests)
 if (typeof module !== 'undefined' && module.exports) {
-  // For Jest tests
   module.exports = {
     validateAnswer,
     disableAllButtons,
@@ -97,7 +96,7 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-// For browser (make globally available)
+// Export for browser (CRITICAL for app to work!)
 if (typeof window !== 'undefined') {
   window.validateAnswer = validateAnswer;
   window.disableAllButtons = disableAllButtons;

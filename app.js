@@ -29,8 +29,8 @@ const quizQuestions = [
   }
 ];
 
-// Store user answers for later scoring
-let userAnswers = [];
+// Initialize user answers storage
+window.userAnswers = [];
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function startQuiz() {
     // Reset user answers
-    userAnswers = [];
+    window.userAnswers = [];
     
     // Hide welcome screen
     welcomeScreen.classList.add('hidden');
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextButton.classList.add('hidden');
     
     // Add click handlers to each answer button
-    answerButtons.forEach(button => {
+    answerButtons.forEach(function(button) {
       // Remove any existing listeners by cloning
       const newButton = button.cloneNode(true);
       button.parentNode.replaceChild(newButton, button);
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const validationResult = validateAnswer(selectedAnswer, correctAnswer);
     
     // Store answer with validation result
-    userAnswers.push({
+    window.userAnswers.push({
       question: questionNumber,
       selected: selectedAnswer,
       correct: correctAnswer,
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Answer selected:', selectedAnswer);
     console.log('Correct answer:', correctAnswer);
     console.log('Is correct:', validationResult.isCorrect);
+    console.log('All answers so far:', window.userAnswers);
     
     // Stop timer
     if (currentTimer && currentTimer.isRunning()) {
@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     disableAllButtons(buttonArray);
     
     // Apply visual feedback to all buttons
-    allButtons.forEach(button => {
+    allButtons.forEach(function(button) {
       const buttonText = button.textContent.trim();
       
       // Always highlight the correct answer in green
@@ -167,17 +168,17 @@ document.addEventListener('DOMContentLoaded', function() {
     currentTimer = new TimerManager(25);
     
     // Start the timer with callback for when it reaches 0
-    currentTimer.start(() => {
+    currentTimer.start(function() {
       console.log('Time is up! Showing modal...');
       timerDisplay.textContent = '⏳ 0s';
       handleTimeUp(screenId);
     });
     
     // Update display every second
-    const displayInterval = setInterval(() => {
+    const displayInterval = setInterval(function() {
       if (currentTimer && currentTimer.isRunning()) {
         const timeLeft = currentTimer.getSeconds();
-        timerDisplay.textContent = `⏳ ${timeLeft}s`;
+        timerDisplay.textContent = '⏳ ' + timeLeft + 's';
       } else {
         clearInterval(displayInterval);
       }
@@ -203,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const questionNumber = parseInt(screenId.replace('question', '').replace('-screen', ''));
     const correctAnswer = quizQuestions[questionNumber - 1].correct;
     
-    userAnswers.push({
+    window.userAnswers.push({
       question: questionNumber,
       selected: 'No answer (time expired)',
       correct: correctAnswer,
@@ -211,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Reveal correct answer when time expires
-    answerButtons.forEach(button => {
+    answerButtons.forEach(function(button) {
       const buttonText = button.textContent.trim();
       if (buttonText === correctAnswer) {
         button.classList.add('correct');
@@ -219,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log('Time expired - no answer recorded, correct answer revealed');
+    console.log('All answers so far:', window.userAnswers);
   }
   
   // Close Time's Up modal
@@ -236,10 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Expose functions globally for navigation
+  // Expose functions and variables globally for navigation
   window.currentTimer = currentTimer;
   window.currentScreenId = currentScreenId;
-  window.userAnswers = userAnswers;
   window.setupAnswerButtons = setupAnswerButtons;
   window.startQuestionTimer = startQuestionTimer;
   
@@ -249,20 +250,20 @@ document.addEventListener('DOMContentLoaded', function() {
 function goToQuestion(questionNumber) {
   // Hide all question screens
   const allScreens = document.querySelectorAll('.question-screen');
-  allScreens.forEach(screen => {
+  allScreens.forEach(function(screen) {
     screen.classList.add('hidden');
   });
   
   // Show the requested question screen
-  const nextScreen = document.getElementById(`question${questionNumber}-screen`);
+  const nextScreen = document.getElementById('question' + questionNumber + '-screen');
   if (nextScreen) {
     nextScreen.classList.remove('hidden');
     
     // Set up answer buttons
-    window.setupAnswerButtons(`question${questionNumber}-screen`, questionNumber);
+    window.setupAnswerButtons('question' + questionNumber + '-screen', questionNumber);
     
     // Start timer for this question
-    window.startQuestionTimer(`question${questionNumber}-screen`);
+    window.startQuestionTimer('question' + questionNumber + '-screen');
   }
 }
 
@@ -275,7 +276,7 @@ function goToResults() {
   
   // Hide all question screens
   const allScreens = document.querySelectorAll('.question-screen');
-  allScreens.forEach(screen => {
+  allScreens.forEach(function(screen) {
     screen.classList.add('hidden');
   });
   
@@ -312,11 +313,7 @@ function goToResults() {
   
   // Update description with performance message
   if (descriptionElement) {
-    descriptionElement.innerHTML = `
-      ${performanceMessage}
-      You scored <span id="score-value">${finalScore}</span> out of 5 💖<br><br>
-      I hope you enjoyed playing. Toodles! 👋
-    `;
+    descriptionElement.innerHTML = performanceMessage + 'You scored <span id="score-value">' + finalScore + '</span> out of 5 💖<br><br>I hope you enjoyed playing. Toodles! 👋';
   }
   
   // Show results screen
@@ -336,7 +333,6 @@ function resetQuiz() {
   
   // Clear user answers
   window.userAnswers = [];
-  userAnswers = [];
   
   // Hide results screen
   const resultsScreen = document.getElementById('results-screen');
@@ -346,14 +342,14 @@ function resetQuiz() {
   
   // Hide all question screens
   const allQuestionScreens = document.querySelectorAll('.question-screen');
-  allQuestionScreens.forEach(screen => {
+  allQuestionScreens.forEach(function(screen) {
     screen.classList.add('hidden');
     
     // Remove all feedback classes from answer buttons
     const answerButtons = screen.querySelectorAll('.answer-option');
-    answerButtons.forEach(button => {
+    answerButtons.forEach(function(button) {
       button.classList.remove('correct', 'incorrect', 'selected');
-      button.disabled = false; // Re-enable buttons
+      button.disabled = false;
     });
     
     // Hide next buttons
