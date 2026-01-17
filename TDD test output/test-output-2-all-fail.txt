@@ -1,0 +1,102 @@
+
+> trivia-quiz@1.0.0 test
+> jest
+
+PASS tests/score.test.js
+FAIL tests/timer.test.js
+  ● Timer Logic › Timer should count down correctly
+
+    TypeError: timer.start is not a function
+
+      18 |   test('Timer should count down correctly', () => {
+      19 |     const timer = new TimerManager(25);
+    > 20 |     timer.start();
+         |           ^
+      21 |     
+      22 |     jest.advanceTimersByTime(3000); // 3 seconds
+      23 |     expect(timer.getSeconds()).toBe(22);
+
+      at Object.start (tests/timer.test.js:20:11)
+
+  ● Timer Logic › Timer should stop at 0
+
+    TypeError: timer.start is not a function
+
+      30 |     let autoSubmitted = false;
+      31 |     
+    > 32 |     timer.start(() => {
+         |           ^
+      33 |       autoSubmitted = true;
+      34 |     });
+      35 |     
+
+      at Object.start (tests/timer.test.js:32:11)
+
+  ● Timer Logic › Timer should clear on answer selection
+
+    TypeError: timer.start is not a function
+
+      41 |   test('Timer should clear on answer selection', () => {
+      42 |     const timer = new TimerManager(15);
+    > 43 |     timer.start();
+         |           ^
+      44 |     
+      45 |     timer.stop();
+      46 |     
+
+      at Object.start (tests/timer.test.js:43:11)
+
+  ● Timer Logic › Timer should auto-submit when reaching 0
+
+    TypeError: timer.start is not a function
+
+      52 |     let submitted = false;
+      53 |     
+    > 54 |     timer.start(() => {
+         |           ^
+      55 |       submitted = true;
+      56 |     });
+      57 |     
+
+      at Object.start (tests/timer.test.js:54:11)
+
+FAIL tests/answerValidation.test.js
+  ● Answer Validation › Correct answer gets .correct class applied
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "correct"
+    Received: undefined
+
+       9 |     
+      10 |     expect(result.isCorrect).toBe(true);
+    > 11 |     expect(result.className).toBe('correct');
+         |                              ^
+      12 |   });
+      13 |
+      14 |   test('Incorrect answer gets .incorrect class applied', () => {
+
+      at Object.toBe (tests/answerValidation.test.js:11:30)
+
+  ● Answer Validation › Incorrect answer gets .incorrect class applied
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "incorrect"
+    Received: undefined
+
+      18 |     
+      19 |     expect(result.isCorrect).toBe(false);
+    > 20 |     expect(result.className).toBe('incorrect');
+         |                              ^
+      21 |   });
+      22 |
+      23 |   test('All answer buttons should be disabled after selection', () => {
+
+      at Object.toBe (tests/answerValidation.test.js:20:30)
+
+Test Suites: 2 failed, 1 passed, 3 total
+Tests:       6 failed, 7 passed, 13 total
+Snapshots:   0 total
+Time:        0.384 s, estimated 1 s
+Ran all test suites.

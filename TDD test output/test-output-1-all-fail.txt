@@ -1,0 +1,211 @@
+
+> trivia-quiz@1.0.0 test
+> jest
+
+FAIL tests/score.test.js
+  ● Score Calculation › All correct answers should give 5/5 score
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5
+    Received: undefined
+
+      14 |     
+      15 |     const score = calculateScore(userAnswers);
+    > 16 |     expect(score).toBe(5);
+         |                   ^
+      17 |   });
+      18 |
+      19 |   test('All incorrect answers should give 0/5 score', () => {
+
+      at Object.toBe (tests/score.test.js:16:19)
+
+  ● Score Calculation › All incorrect answers should give 0/5 score
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: undefined
+
+      27 |     
+      28 |     const score = calculateScore(userAnswers);
+    > 29 |     expect(score).toBe(0);
+         |                   ^
+      30 |   });
+      31 |
+      32 |   test('Mixed answers should calculate correctly (3 correct, 2 wrong)', () => {
+
+      at Object.toBe (tests/score.test.js:29:19)
+
+  ● Score Calculation › Mixed answers should calculate correctly (3 correct, 2 wrong)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: undefined
+
+      40 |     
+      41 |     const score = calculateScore(userAnswers);
+    > 42 |     expect(score).toBe(3);
+         |                   ^
+      43 |   });
+      44 |
+      45 |   test('Empty answers array should return 0', () => {
+
+      at Object.toBe (tests/score.test.js:42:19)
+
+  ● Score Calculation › Empty answers array should return 0
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: undefined
+
+      46 |     const userAnswers = [];
+      47 |     const score = calculateScore(userAnswers);
+    > 48 |     expect(score).toBe(0);
+         |                   ^
+      49 |   });
+      50 | });
+      51 |
+
+      at Object.toBe (tests/score.test.js:48:19)
+
+FAIL tests/timer.test.js
+  ● Timer Logic › Timer should start at 25 seconds
+
+    TypeError: timer.getSeconds is not a function
+
+      13 |   test('Timer should start at 25 seconds', () => {
+      14 |     const timer = new TimerManager(25);
+    > 15 |     expect(timer.getSeconds()).toBe(25);
+         |                  ^
+      16 |   });
+      17 |
+      18 |   test('Timer should count down correctly', () => {
+
+      at Object.getSeconds (tests/timer.test.js:15:18)
+
+  ● Timer Logic › Timer should count down correctly
+
+    TypeError: timer.start is not a function
+
+      18 |   test('Timer should count down correctly', () => {
+      19 |     const timer = new TimerManager(25);
+    > 20 |     timer.start();
+         |           ^
+      21 |     
+      22 |     jest.advanceTimersByTime(3000); // 3 seconds
+      23 |     expect(timer.getSeconds()).toBe(22);
+
+      at Object.start (tests/timer.test.js:20:11)
+
+  ● Timer Logic › Timer should stop at 0
+
+    TypeError: timer.start is not a function
+
+      30 |     let autoSubmitted = false;
+      31 |     
+    > 32 |     timer.start(() => {
+         |           ^
+      33 |       autoSubmitted = true;
+      34 |     });
+      35 |     
+
+      at Object.start (tests/timer.test.js:32:11)
+
+  ● Timer Logic › Timer should clear on answer selection
+
+    TypeError: timer.start is not a function
+
+      41 |   test('Timer should clear on answer selection', () => {
+      42 |     const timer = new TimerManager(15);
+    > 43 |     timer.start();
+         |           ^
+      44 |     
+      45 |     timer.stop();
+      46 |     
+
+      at Object.start (tests/timer.test.js:43:11)
+
+  ● Timer Logic › Timer should auto-submit when reaching 0
+
+    TypeError: timer.start is not a function
+
+      52 |     let submitted = false;
+      53 |     
+    > 54 |     timer.start(() => {
+         |           ^
+      55 |       submitted = true;
+      56 |     });
+      57 |     
+
+      at Object.start (tests/timer.test.js:54:11)
+
+FAIL tests/answerValidation.test.js
+  ● Answer Validation › Correct answer gets .correct class applied
+
+    TypeError: Cannot read properties of undefined (reading 'isCorrect')
+
+       8 |     const result = validateAnswer(selectedAnswer, correctAnswer);
+       9 |     
+    > 10 |     expect(result.isCorrect).toBe(true);
+         |                   ^
+      11 |     expect(result.className).toBe('correct');
+      12 |   });
+      13 |
+
+      at Object.isCorrect (tests/answerValidation.test.js:10:19)
+
+  ● Answer Validation › Incorrect answer gets .incorrect class applied
+
+    TypeError: Cannot read properties of undefined (reading 'isCorrect')
+
+      17 |     const result = validateAnswer(selectedAnswer, correctAnswer);
+      18 |     
+    > 19 |     expect(result.isCorrect).toBe(false);
+         |                   ^
+      20 |     expect(result.className).toBe('incorrect');
+      21 |   });
+      22 |
+
+      at Object.isCorrect (tests/answerValidation.test.js:19:19)
+
+  ● Answer Validation › All answer buttons should be disabled after selection
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      31 |     
+      32 |     buttons.forEach(button => {
+    > 33 |       expect(button.disabled).toBe(true);
+         |                               ^
+      34 |     });
+      35 |   });
+      36 |
+
+      at toBe (tests/answerValidation.test.js:33:31)
+          at Array.forEach (<anonymous>)
+      at Object.forEach (tests/answerValidation.test.js:32:13)
+
+  ● Answer Validation › Multiple clicks should only count first click
+
+    TypeError: Cannot read properties of undefined (reading 'firstClick')
+
+      38 |     const clicks = preventMultipleClicks();
+      39 |     
+    > 40 |     expect(clicks.firstClick()).toBe(true);   // First click allowed
+         |                   ^
+      41 |     expect(clicks.firstClick()).toBe(false);  // Second click blocked
+      42 |     expect(clicks.getCount()).toBe(1);
+      43 |   });
+
+      at Object.firstClick (tests/answerValidation.test.js:40:19)
+
+Test Suites: 3 failed, 3 total
+Tests:       13 failed, 13 total
+Snapshots:   0 total
+Time:        0.388 s, estimated 1 s
+Ran all test suites.
