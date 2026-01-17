@@ -96,7 +96,7 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-// ALSO export for browser (make globally available)
+// Export for browser (CRITICAL for app to work!)
 if (typeof window !== 'undefined') {
   window.validateAnswer = validateAnswer;
   window.disableAllButtons = disableAllButtons;
