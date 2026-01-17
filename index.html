@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I know, you know, we know – Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <main class="container" role="main" aria-labelledby="quiz-title">
+      <h1 id="quiz-title" class="title">
+        WELCOME TO THE <br>
+        <span style="color: var(--accent); font-weight: 800;">
+          “I know 👀, YOU know🥺, WE know😏” 
+        </span><br>
+        QUIZ! 🥳🥳🥳
+      </h1>
+      <p class="description">
+        How much do you really know? This 5 question quiz will put your knowledge, and maybe your confidence🤷‍♀️, to the test.
+        When you’re ready for a challenge, click the button below and go go go! 🚦🚦🚦
+        Ah! before i forget 🙈 you have only 25 seconds to answer each question, from the very moment you press start! Tehehe 😏
+      </p>
+      <p class="subtitle">
+        Are you ready to get started?
+      </p>
+  
+      <!-- Replace the onclick with your own navigation logic later -->
+      <button class="cta-button" type="button">
+        I am ready!!!
+      </button>
+    </main>
+  
+    <!-- QUESTION 1 SCREEN -->
+    <div id="question1-screen" class="question-screen hidden">
+  
+      <div class="question-header">
+        <span class="question-number">Question 1/5</span>
+        <span class="timer">⏳ 25s</span>
+      </div>
+  
+      <div class="question-card">
+        <h2 class="question-text">
+          1. In which month is Valentine's Day celebrated?
+        </h2>
+  
+        <button class="answer-option">a) February</button>
+        <button class="answer-option">b) March</button>
+        <button class="answer-option">c) April</button>
+        <button class="next-button hidden" onclick="goToQuestion(2)">Next ➜</button>
+      </div>
+    </div>
+  
+    <!-- QUESTION 2 SCREEN -->
+    <div id="question2-screen" class="question-screen hidden">
+    
+      <div class="question-header">
+        <span class="question-number">Question 2/5</span>
+        <span class="timer">⏳ 25s</span>
+      </div>
+    
+      <div class="question-card">
+        <h2 class="question-text">
+          2. Which Roman God is often associated with love and fertility?
+        </h2>
+    
+        <button class="answer-option">a) Nefertiti</button>
+        <button class="answer-option">b) Athena</button>
+        <button class="answer-option">c) Cupid</button>
+        <button class="next-button hidden" onclick="goToQuestion(3)">Next ➜</button>
+      </div>
+    </div>
+    
+    <!-- QUESTION 3 SCREEN -->
+    <div id="question3-screen" class="question-screen hidden">
+  
+      <div class="question-header">
+        <span class="question-number">Question 3/5</span>
+        <span class="timer">⏳ 25s</span>
+      </div>
+  
+      <div class="question-card">
+        <h2 class="question-text">
+          3. Which country is credited with starting the tradition of exchanging love notes on Valentine's Day?
+        </h2>
+  
+        <button class="answer-option">a) France</button>
+        <button class="answer-option">b) England</button>
+        <button class="answer-option">c) Italy</button>
+        <button class="next-button hidden" onclick="goToQuestion(4)">Next ➜</button>
+      </div>
+    </div>
+  
+    <!-- QUESTION 4 SCREEN -->
+    <div id="question4-screen" class="question-screen hidden">
+    
+      <div class="question-header">
+        <span class="question-number">Question 4/5</span>
+        <span class="timer">⏳ 25s</span>
+      </div>
+    
+      <div class="question-card">
+        <h2 class="question-text">
+          4. When was February 14 first declared to be Valentine’s Day?
+        </h2>
+    
+        <button class="answer-option">a) 1287</button>
+        <button class="answer-option">b) 1537</button>
+        <button class="answer-option">c) 1989</button>
+        <button class="next-button hidden" onclick="goToQuestion(5)">Next ➜</button>
+      </div>
+    </div>
+    
+      <!-- QUESTION 5 SCREEN -->
+    <div id="question5-screen" class="question-screen hidden">
+  
+      <div class="question-header">
+        <span class="question-number">Question 5/5</span>
+        <span class="timer">⏳ 25s</span>
+      </div>
+  
+      <div class="question-card">
+        <h2 class="question-text">
+          5. What country has a holiday on the 14th of every month?
+        </h2>
+  
+        <button class="answer-option">a) Chad</button>
+        <button class="answer-option">b) Germany</button>
+        <button class="answer-option">c) South Korea</button>
+        <button class="next-button hidden" onclick="goToResults()">Next ➜</button>
+      </div>
+    </div>
+  
+    <!-- RESULTS SCREEN -->
+    <div id="results-screen" class="question-screen hidden">
+    
+      <div class="question-card">
+        <h2 class="question-text" style="text-align:center;">
+          🎉 You completed the quiz! 🎉
+        </h2>
+    
+        <p class="description" style="color:#2b0b1a; text-align:center; font-size:1.2rem;">
+          Such an easy quiz, don’t you think? 😉<br><br>
+          You scored <span id="score-value">0</span> out of 5 💖<br><br>
+          I hope you enjoyed playing. Toodles! 👋
+        </p>
+    
+        <button class="answer-option" style="margin-top:1.5rem;">
+          Play Again
+        </button>
+      </div>
+    </div>
+  
+
+  <script src="script.js"></script>
+  <script src="app.js"></script>       <!-- UI code uses TDD code -->
+  
+</body>
+</html>
