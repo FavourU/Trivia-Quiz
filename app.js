@@ -279,12 +279,47 @@ function goToResults() {
     screen.classList.add('hidden');
   });
   
-  // Log all answers for debugging
+  // Calculate score using TDD-tested function
+  const finalScore = calculateScore(window.userAnswers);
+  
   console.log('Quiz completed!');
-  console.log('All user answers:', window.userAnswers);
+  console.log('User answers:', window.userAnswers);
+  console.log('Final score:', finalScore, 'out of 5');
+  
+  // Update score display
+  const scoreDisplay = document.getElementById('score-value');
+  if (scoreDisplay) {
+    scoreDisplay.textContent = finalScore;
+  }
+  
+  // Add performance message
+  const resultsScreen = document.getElementById('results-screen');
+  const descriptionElement = resultsScreen.querySelector('.description');
+  
+  // Get performance message based on score
+  let performanceMessage = '';
+  if (finalScore === 5) {
+    performanceMessage = "Perfect! You're a Valentine's Day expert! 🎉<br><br>";
+  } else if (finalScore === 4) {
+    performanceMessage = "Excellent! Almost perfect! 💖<br><br>";
+  } else if (finalScore === 3) {
+    performanceMessage = "Good job! You know your stuff! 👏<br><br>";
+  } else if (finalScore === 2) {
+    performanceMessage = "Not bad! Keep learning! 💪<br><br>";
+  } else {
+    performanceMessage = "Nice try! Give it another go! 😊<br><br>";
+  }
+  
+  // Update description with performance message
+  if (descriptionElement) {
+    descriptionElement.innerHTML = `
+      ${performanceMessage}
+      You scored <span id="score-value">${finalScore}</span> out of 5 💖<br><br>
+      I hope you enjoyed playing. Toodles! 👋
+    `;
+  }
   
   // Show results screen
-  const resultsScreen = document.getElementById('results-screen');
   if (resultsScreen) {
     resultsScreen.classList.remove('hidden');
   }
