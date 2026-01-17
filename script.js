@@ -85,9 +85,8 @@ class TimerManager {
   }
 }
 
-// Export for BOTH Node.js AND Browser
+// Export for Node.js (Jest tests)
 if (typeof module !== 'undefined' && module.exports) {
-  // For Jest tests
   module.exports = {
     validateAnswer,
     disableAllButtons,
@@ -97,7 +96,7 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-// For browser (make globally available)
+// ALSO export for browser (make globally available)
 if (typeof window !== 'undefined') {
   window.validateAnswer = validateAnswer;
   window.disableAllButtons = disableAllButtons;
