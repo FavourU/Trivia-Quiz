@@ -1,0 +1,32 @@
+// Iteration 1: Empty implementations - ALL 13 tests will FAIL
+
+function validateAnswer(selected, correct) {
+  // Not implemented - will return undefined
+}
+
+function disableAllButtons(buttons) {
+  // Not implemented - buttons stay enabled
+}
+
+function calculateScore(userAnswers) {
+  // Not implemented - will return undefined
+}
+
+function preventMultipleClicks() {
+  // Not implemented - will return undefined
+}
+
+class TimerManager {
+  // Empty class - all methods missing
+}
+
+// Export for testing
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    validateAnswer,
+    disableAllButtons,
+    calculateScore,
+    preventMultipleClicks,
+    TimerManager
+  };
+}
