@@ -1,4 +1,6 @@
-<img width="1919" height="987" alt="image" src="https://github.com/user-attachments/assets/4d58cc0d-203b-4cc8-a783-7b7db0228e54" /># I Know, You Know, We Know - Valentine's Day Trivia Quiz
+<img width="1919" height="987" alt="image" src="https://github.com/user-attachments/assets/4d58cc0d-203b-4cc8-a783-7b7db0228e54" />
+
+# I Know, You Know, We Know - Valentine's Day Trivia Quiz
 
 ![Tests](https://github.com/FavourU/Trivia-Quiz/actions/workflows/test.yml/badge.svg)
 
