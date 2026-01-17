@@ -289,3 +289,34 @@ body {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
 }
+/* Correct and incorrect answer feedback */
+.answer-option.correct {
+  background: #28a745;
+  color: white;
+  border: 3px solid #1e7e34;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.answer-option.incorrect {
+  background: #dc3545;
+  color: white;
+  border: 3px solid #a71d2a;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Icons for correct/incorrect */
+.answer-option.correct::after {
+  content: ' ✓';
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.answer-option.incorrect::after {
+  content: ' ✗';
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
