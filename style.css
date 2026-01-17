@@ -281,3 +281,25 @@ body {
 .modal-button:active {
   transform: translateY(0);
 }
+
+/* Answer selection states */
+.answer-option.selected {
+  background: #4a90e2;
+  border: 3px solid #2e5f8a;
+  transform: scale(1.02);
+}
+
+.answer-option.correct {
+  background: #28a745;
+  border: 3px solid #1e7e34;
+}
+
+.answer-option.incorrect {
+  background: #dc3545;
+  border: 3px solid #a71d2a;
+}
+
+.answer-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
