@@ -29,8 +29,8 @@ const quizQuestions = [
   }
 ];
 
-// Store user answers for later scoring
-let window.userAnswers = [];
+// Initialize user answers storage
+window.userAnswers = [];
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Answer selected:', selectedAnswer);
     console.log('Correct answer:', correctAnswer);
     console.log('Is correct:', validationResult.isCorrect);
+    console.log('All answers so far:', window.userAnswers);
     
     // Stop timer
     if (currentTimer && currentTimer.isRunning()) {
@@ -219,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log('Time expired - no answer recorded, correct answer revealed');
+    console.log('All answers so far:', window.userAnswers);
   }
   
   // Close Time's Up modal
@@ -236,10 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Expose functions globally for navigation
+  // Expose functions and variables globally for navigation
   window.currentTimer = currentTimer;
   window.currentScreenId = currentScreenId;
-  window.window.userAnswers = window.userAnswers;
   window.setupAnswerButtons = setupAnswerButtons;
   window.startQuestionTimer = startQuestionTimer;
   
@@ -280,10 +281,10 @@ function goToResults() {
   });
   
   // Calculate score using TDD-tested function
-  const finalScore = calculateScore(window.window.userAnswers);
+  const finalScore = calculateScore(window.userAnswers);
   
   console.log('Quiz completed!');
-  console.log('User answers:', window.window.userAnswers);
+  console.log('User answers:', window.userAnswers);
   console.log('Final score:', finalScore, 'out of 5');
   
   // Update score display
@@ -335,7 +336,6 @@ function resetQuiz() {
   }
   
   // Clear user answers
-  window.window.userAnswers = [];
   window.userAnswers = [];
   
   // Hide results screen
@@ -353,7 +353,7 @@ function resetQuiz() {
     const answerButtons = screen.querySelectorAll('.answer-option');
     answerButtons.forEach(button => {
       button.classList.remove('correct', 'incorrect', 'selected');
-      button.disabled = false; // Re-enable buttons
+      button.disabled = false;
     });
     
     // Hide next buttons
