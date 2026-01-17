@@ -51,6 +51,9 @@ The quiz has **5 Valentine's Day themed questions**. Each question screen shows:
 3. You'll immediately see if you're correct (green ✓ or red ✗)
 4. Click "Next ➜" to go to the next question
 
+<img width="1236" height="1125" alt="image" src="https://github.com/user-attachments/assets/64fec0ac-9794-466f-bf44-57d48a6e2cf3" />
+
+
 **Important notes:**
 
 - You can only select one answer per question
@@ -76,30 +79,11 @@ If you don't select an answer before the timer reaches 0:
 5. The "Next" button appears
 
 Tip: Don't panic! 25 seconds is enough time to read and answer carefully.
-
-Answer Feedback
-Visual Feedback System
-After you select an answer, you'll see instant visual feedback:
-Correct Answer:
-
-Your selected answer turns bright green with checkmark ✓
-Shows you got it right!
-
-Wrong Answer:
-
-Your selected answer turns red with X ✗
-The correct answer turns green with ✓
-You can learn from your mistake!
-
-Time Expired (No Answer):
-
-All answers are grayed out and disabled
-Correct answer shown in green with ✓
-Counts as incorrect in your final score
+<img width="804" height="644" alt="image" src="https://github.com/user-attachments/assets/82355e43-fe8d-49c1-ab3a-0603c2e4ec11" />
 
 
-Viewing Your Results
-After Completing All 5 Questions
+## Viewing Your Results
+### After Completing All 5 Questions
 After answering the last question, you'll see the Results Screen showing:
 
 Completion message: "🎉 You completed the quiz! 🎉"
@@ -107,7 +91,10 @@ Personalized performance message
 Your final score: "You scored X out of 5 💖"
 "Play Again" button
 
-Understanding Your Score
+<img width="809" height="669" alt="image" src="https://github.com/user-attachments/assets/2463bd55-6ded-4bad-bb49-574b5b39691c" />
+
+
+### Understanding Your Score
 
 5 out of 5 = Perfect! All correct
 4 out of 5 = Excellent! One wrong
@@ -115,138 +102,133 @@ Understanding Your Score
 2 out of 5 = Not bad! Room to improve
 0-1 out of 5 = Nice try! Learn and retry
 
-Performance Messages
-ScoreMessage5/5"Perfect! You're a Valentine's Day expert! 🎉"4/5"Excellent! Almost perfect! 💖"3/5"Good job! You know your stuff! 👏"2/5"Not bad! Keep learning! 💪"0-1/5"Nice try! Give it another go! 😊"
+## Playing Again
+### How to Restart the Quiz
 
-Playing Again
-How to Restart the Quiz
+- On the results screen, click the "Play Again" button
+- The quiz will instantly reset (no page refresh!)
+- You'll return to the Welcome screen
+- Click "I am ready!!!" to start a new attempt
 
-On the results screen, click the "Play Again" button
-The quiz will instantly reset (no page refresh!)
-You'll return to the Welcome screen
-Click "I am ready!!!" to start a new attempt
-
-What Gets Reset
+### What Gets Reset
 When you click "Play Again":
 
-Score returns to 0
-All answers cleared
-All visual feedback removed
-Timer resets to 25 seconds
-All buttons re-enabled
+- Score returns to 0
+- All answers cleared
+- All visual feedback removed
+- Timer resets to 25 seconds
 
 You can play unlimited times to improve your score or learn the answers!
 
-Troubleshooting
-Common Issues and Solutions
-Quiz won't load / Blank screen
+## Troubleshooting
+### Common Issues and Solutions
 
-Check your internet connection
-Refresh the page (F5 or Ctrl+R)
-Try a different browser
-Clear browser cache
+1. Quiz won't load / Blank screen
 
-Timer isn't counting down
+- Check your internet connection
+- Refresh the page (F5 or Ctrl+R)
+- Try a different browser
+- Clear browser cache
 
-Refresh the page
-Check browser console for errors (F12)
-Try a different browser
+2. Timer isn't counting down
 
-Can't click answer buttons
+- Refresh the page
+- Check browser console for errors (F12)
+- Try a different browser
 
-Ensure you haven't already selected an answer
-If timer expired, click "Okay" on the popup first
-Refresh the page to restart
+3. Can't click answer buttons
 
-Score shows "0 out of 5" despite correct answers
+- Ensure you haven't already selected an answer
+- If timer expired, click "Okay" on the popup first
+- Refresh the page to restart
 
-Refresh and try again
-Check browser console for errors (F12)
-Try a different browser
+4. Score shows "0 out of 5" despite correct answers
 
-"Next" button doesn't appear
+- Refresh and try again
+- Check browser console for errors (F12)
+- Try a different browser
 
-Ensure you've selected an answer or timer has expired
-If time's up popup appeared, click "Okay" first
-Refresh the page if stuck
+5. "Next" button doesn't appear
 
-Play Again button doesn't work
+- Ensure you've selected an answer or timer has expired
+- If time's up popup appeared, click "Okay" first
+- Refresh the page if stuck
 
-Try refreshing the page manually (F5)
-Clear browser cache
-Try a different browser
+6. Play Again button doesn't work
 
-
-Tips for Best Experience
-Getting the Best Score
-
-Read carefully - Don't rush, you have 25 seconds
-Read all options before selecting
-Trust your first instinct
-Learn from mistakes
-Play multiple times to practice!
-
-Technical Tips
-
-Use a stable internet connection
-Use updated browser (Chrome, Firefox, Safari, Edge)
-Desktop recommended for best experience
-Mobile works great for on-the-go play
-Don't refresh during quiz - Progress will be lost
-
-For Mobile Users
-
-Hold phone upright (portrait mode) for best layout
-Tap carefully to avoid mis-selecting answers
-Use default zoom level
-Stable wifi recommended over cellular data
+- Try refreshing the page manually (F5)
+- Clear browser cache
+- Try a different browser
 
 
-Browser Compatibility
-Fully Supported Browsers
-BrowserDesktopMobileChrome✅ Yes✅ YesFirefox✅ Yes✅ YesSafari✅ Yes✅ YesEdge✅ Yes✅ Yes
-Minimum versions: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+## Tips for Best Experience
+### Getting the Best Score
 
-Frequently Asked Questions (FAQ)
+- Read carefully - Don't rush, you have 25 seconds
+- Read all options before selecting
+- Trust your first instinct
+- Learn from mistakes
+- Play multiple times to practice!
+
+### Technical Tips
+
+- Use a stable internet connection
+- Use updated browser (Chrome, Firefox, Safari, Edge)
+- Desktop recommended for best experience
+- Mobile works great for on-the-go play
+- Don't refresh during quiz - Progress will be lost
+
+## Frequently Asked Questions (FAQ)
 Q: How long does the quiz take?
 A: Approximately 2-3 minutes (25 seconds × 5 questions + navigation time).
+
+
 Q: Can I pause the quiz?
 A: No, once started, the timer runs for each question.
+
+
 Q: Can I go back to previous questions?
 A: No, you can only move forward through questions.
+
+
 Q: Do I need to create an account?
 A: No! The quiz is completely anonymous and requires no login.
+
+
 Q: Is my score saved?
 A: No, scores are not saved. Your score is only visible until you close the browser or click "Play Again."
+
+
 Q: Can I share my score?
 A: You can take a screenshot of your results to share!
+
+
 Q: How many questions are there?
 A: 5 Valentine's Day themed questions.
+
+
 Q: What if I don't know an answer?
 A: Make your best guess! The correct answer will be revealed after you select.
+
+
 Q: Does the quiz work offline?
 A: No, an internet connection is required.
+
+
 Q: Is there a mobile app?
 A: No, but the web version works perfectly on mobile browsers!
 
-Quick Start Guide
+## Quick Start Guide
 Complete Quiz in 5 Steps:
 
-Open the quiz URL in your browser
-Click "I am ready!!!" on welcome screen
-Answer 5 questions (click your choice for each)
-View your score on results screen
-Click "Play Again" to try for a better score!
+1. Open the quiz URL in your browser
+2. Click "I am ready!!!" on welcome screen
+3. Answer 5 questions (click your choice for each)
+4. View your score on results screen
+5. Click "Play Again" to try for a better score!
 
 
-Support & Feedback
-Found a bug? Report it on GitHub Issues with:
-
-Description of the problem
-Screenshots
-Browser and device information
-
-Have suggestions? We'd love to hear your ideas for improving the quiz!
+Have suggestions? I'd love to hear your ideas for improving the quiz!
 
 Version: 1.0
 Last Updated: January 2026
