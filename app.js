@@ -30,7 +30,7 @@ const quizQuestions = [
 ];
 
 // Store user answers for later scoring
-let userAnswers = [];
+let window.userAnswers = [];
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function startQuiz() {
     // Reset user answers
-    userAnswers = [];
+    window.userAnswers = [];
     
     // Hide welcome screen
     welcomeScreen.classList.add('hidden');
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const validationResult = validateAnswer(selectedAnswer, correctAnswer);
     
     // Store answer with validation result
-    userAnswers.push({
+    window.userAnswers.push({
       question: questionNumber,
       selected: selectedAnswer,
       correct: correctAnswer,
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const questionNumber = parseInt(screenId.replace('question', '').replace('-screen', ''));
     const correctAnswer = quizQuestions[questionNumber - 1].correct;
     
-    userAnswers.push({
+    window.userAnswers.push({
       question: questionNumber,
       selected: 'No answer (time expired)',
       correct: correctAnswer,
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Expose functions globally for navigation
   window.currentTimer = currentTimer;
   window.currentScreenId = currentScreenId;
-  window.userAnswers = userAnswers;
+  window.window.userAnswers = window.userAnswers;
   window.setupAnswerButtons = setupAnswerButtons;
   window.startQuestionTimer = startQuestionTimer;
   
@@ -280,10 +280,10 @@ function goToResults() {
   });
   
   // Calculate score using TDD-tested function
-  const finalScore = calculateScore(window.userAnswers);
+  const finalScore = calculateScore(window.window.userAnswers);
   
   console.log('Quiz completed!');
-  console.log('User answers:', window.userAnswers);
+  console.log('User answers:', window.window.userAnswers);
   console.log('Final score:', finalScore, 'out of 5');
   
   // Update score display
@@ -335,8 +335,8 @@ function resetQuiz() {
   }
   
   // Clear user answers
+  window.window.userAnswers = [];
   window.userAnswers = [];
-  userAnswers = [];
   
   // Hide results screen
   const resultsScreen = document.getElementById('results-screen');
