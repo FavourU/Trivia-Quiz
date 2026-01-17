@@ -324,3 +324,60 @@ function goToResults() {
     resultsScreen.classList.remove('hidden');
   }
 }
+
+// Reset quiz for "Play Again" functionality
+function resetQuiz() {
+  console.log('Resetting quiz...');
+  
+  // Stop any running timers
+  if (window.currentTimer) {
+    window.currentTimer.stop();
+  }
+  
+  // Clear user answers
+  window.userAnswers = [];
+  userAnswers = [];
+  
+  // Hide results screen
+  const resultsScreen = document.getElementById('results-screen');
+  if (resultsScreen) {
+    resultsScreen.classList.add('hidden');
+  }
+  
+  // Hide all question screens
+  const allQuestionScreens = document.querySelectorAll('.question-screen');
+  allQuestionScreens.forEach(screen => {
+    screen.classList.add('hidden');
+    
+    // Remove all feedback classes from answer buttons
+    const answerButtons = screen.querySelectorAll('.answer-option');
+    answerButtons.forEach(button => {
+      button.classList.remove('correct', 'incorrect', 'selected');
+      button.disabled = false; // Re-enable buttons
+    });
+    
+    // Hide next buttons
+    const nextButton = screen.querySelector('.next-button');
+    if (nextButton) {
+      nextButton.classList.add('hidden');
+    }
+    
+    // Reset timer display
+    const timerDisplay = screen.querySelector('.timer');
+    if (timerDisplay) {
+      timerDisplay.textContent = '⏳ 25s';
+    }
+  });
+  
+  // Show welcome screen
+  const welcomeScreen = document.querySelector('.container');
+  if (welcomeScreen) {
+    welcomeScreen.classList.remove('hidden');
+  }
+  
+  // Reset timer variables
+  window.currentTimer = null;
+  window.currentScreenId = null;
+  
+  console.log('Quiz reset complete - ready to play again!');
+}
