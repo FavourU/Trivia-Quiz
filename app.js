@@ -1,5 +1,34 @@
 // app.js - UI Logic for Quiz Application
 
+// Quiz data with correct answers
+const quizQuestions = [
+  { 
+    id: 1, 
+    question: 'In which month is Valentine\'s Day celebrated?', 
+    correct: 'a) February' 
+  },
+  { 
+    id: 2, 
+    question: 'Which Roman God is often associated with love and fertility?', 
+    correct: 'c) Cupid' 
+  },
+  { 
+    id: 3, 
+    question: 'Which country is credited with starting the tradition of exchanging love notes on Valentine\'s Day?', 
+    correct: 'a) France' 
+  },
+  { 
+    id: 4, 
+    question: 'When was February 14 first declared to be Valentine\'s Day?', 
+    correct: 'b) 1537' 
+  },
+  { 
+    id: 5, 
+    question: 'What country has a holiday on the 14th of every month?', 
+    correct: 'c) South Korea' 
+  }
+];
+
 // Store user answers for later scoring
 let userAnswers = [];
 
@@ -73,14 +102,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get selected answer text
     const selectedAnswer = clickedButton.textContent.trim();
     
-    // Store answer
+    // Get correct answer for this question
+    const correctAnswer = quizQuestions[questionNumber - 1].correct;
+    
+    // Validate answer using TDD-tested function
+    const validationResult = validateAnswer(selectedAnswer, correctAnswer);
+    
+    // Store answer with validation result
     userAnswers.push({
       question: questionNumber,
-      selected: selectedAnswer
+      selected: selectedAnswer,
+      correct: correctAnswer,
+      isCorrect: validationResult.isCorrect
     });
     
     console.log('Answer selected:', selectedAnswer);
-    console.log('All answers so far:', userAnswers);
+    console.log('Correct answer:', correctAnswer);
+    console.log('Is correct:', validationResult.isCorrect);
     
     // Stop timer
     if (currentTimer && currentTimer.isRunning()) {
@@ -92,8 +130,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonArray = Array.from(allButtons);
     disableAllButtons(buttonArray);
     
-    // Highlight selected answer only
-    clickedButton.classList.add('selected');
+    // Apply visual feedback to all buttons
+    allButtons.forEach(button => {
+      const buttonText = button.textContent.trim();
+      
+      // Always highlight the correct answer in green
+      if (buttonText === correctAnswer) {
+        button.classList.add('correct');
+      }
+      
+      // If user selected wrong answer, highlight it in red
+      if (buttonText === selectedAnswer && !validationResult.isCorrect) {
+        button.classList.add('incorrect');
+      }
+    });
     
     // Show next button
     nextButton.classList.remove('hidden');
@@ -151,13 +201,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Store "no answer" for this question
     const questionNumber = parseInt(screenId.replace('question', '').replace('-screen', ''));
+    const correctAnswer = quizQuestions[questionNumber - 1].correct;
     
     userAnswers.push({
       question: questionNumber,
-      selected: 'No answer (time expired)'
+      selected: 'No answer (time expired)',
+      correct: correctAnswer,
+      isCorrect: false
     });
     
-    console.log('Time expired - no answer recorded');
+    // Reveal correct answer when time expires
+    answerButtons.forEach(button => {
+      const buttonText = button.textContent.trim();
+      if (buttonText === correctAnswer) {
+        button.classList.add('correct');
+      }
+    });
+    
+    console.log('Time expired - no answer recorded, correct answer revealed');
   }
   
   // Close Time's Up modal
@@ -218,7 +279,7 @@ function goToResults() {
     screen.classList.add('hidden');
   });
   
-  // Log all answers for debugging (scoring will be implemented later)
+  // Log all answers for debugging
   console.log('Quiz completed!');
   console.log('All user answers:', window.userAnswers);
   
