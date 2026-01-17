@@ -7,12 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const startButton = document.querySelector('.cta-button');
   const welcomeScreen = document.querySelector('.container');
   const question1Screen = document.getElementById('question1-screen');
+  const timeupModal = document.getElementById('timeup-modal');
+  const timeupOkayBtn = document.getElementById('timeup-okay-btn');
   
   // Timer management
   let currentTimer = null;
+  let currentScreenId = null;
   
   // Start button click handler
   startButton.addEventListener('click', startQuiz);
+  
+  // Time's up modal okay button
+  timeupOkayBtn.addEventListener('click', closeTimeupModal);
   
   function startQuiz() {
     // Hide welcome screen
@@ -34,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
       currentTimer.stop();
     }
     
+    // Store current screen ID
+    currentScreenId = screenId;
+    
     // Get timer display element for this screen
     const screen = document.getElementById(screenId);
     const timerDisplay = screen.querySelector('.timer');
@@ -43,9 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start the timer with callback for when it reaches 0
     currentTimer.start(() => {
-      console.log('Time is up! Auto-submitting...');
+      console.log('Time is up! Showing modal...');
       timerDisplay.textContent = '⏳ 0s';
-      // TODO: Auto-submit answer logic here
       handleTimeUp(screenId);
     });
     
@@ -65,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Handle when timer reaches 0
   function handleTimeUp(screenId) {
+    // Show Time's Up modal
+    timeupModal.classList.remove('hidden');
+    
     const screen = document.getElementById(screenId);
     const answerButtons = screen.querySelectorAll('.answer-option');
     
@@ -72,11 +83,20 @@ document.addEventListener('DOMContentLoaded', function() {
     answerButtons.forEach(button => {
       button.disabled = true;
     });
+  }
+  
+  // Close Time's Up modal
+  function closeTimeupModal() {
+    // Hide modal
+    timeupModal.classList.add('hidden');
     
-    // Show next button
-    const nextButton = screen.querySelector('.next-button');
-    if (nextButton) {
-      nextButton.classList.remove('hidden');
+    // Show next button on current question screen
+    if (currentScreenId) {
+      const screen = document.getElementById(currentScreenId);
+      const nextButton = screen.querySelector('.next-button');
+      if (nextButton) {
+        nextButton.classList.remove('hidden');
+      }
     }
   }
   
@@ -88,8 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Expose handleAnswerSelection globally for answer buttons
+  // Expose functions globally for navigation
   window.handleAnswerSelection = handleAnswerSelection;
+  window.startQuestionTimer = startQuestionTimer;
+  window.currentTimer = currentTimer;
+  window.currentScreenId = currentScreenId;
   
 });
 
@@ -107,52 +130,9 @@ function goToQuestion(questionNumber) {
     nextScreen.classList.remove('hidden');
     
     // Start timer for this question
-    startQuestionTimer(`question${questionNumber}-screen`);
-  }
-}
-
-// Helper function to start timer (accessible by goToQuestion)
-function startQuestionTimer(screenId) {
-  // This needs to be accessible by goToQuestion
-  // Same implementation as above
-  if (window.currentTimer) {
-    window.currentTimer.stop();
-  }
-  
-  const screen = document.getElementById(screenId);
-  const timerDisplay = screen.querySelector('.timer');
-  
-  window.currentTimer = new TimerManager(25);
-  
-  window.currentTimer.start(() => {
-    timerDisplay.textContent = '⏳ 0s';
-    handleTimeUp(screenId);
-  });
-  
-  const displayInterval = setInterval(() => {
-    if (window.currentTimer && window.currentTimer.isRunning()) {
-      const timeLeft = window.currentTimer.getSeconds();
-      timerDisplay.textContent = `⏳ ${timeLeft}s`;
-    } else {
-      clearInterval(displayInterval);
+    if (window.startQuestionTimer) {
+      window.startQuestionTimer(`question${questionNumber}-screen`);
     }
-  }, 1000);
-  
-  timerDisplay.textContent = '⏳ 25s';
-}
-
-// Handle when timer reaches 0
-function handleTimeUp(screenId) {
-  const screen = document.getElementById(screenId);
-  const answerButtons = screen.querySelectorAll('.answer-option');
-  
-  answerButtons.forEach(button => {
-    button.disabled = true;
-  });
-  
-  const nextButton = screen.querySelector('.next-button');
-  if (nextButton) {
-    nextButton.classList.remove('hidden');
   }
 }
 
