@@ -281,3 +281,11 @@ body {
 .modal-button:active {
   transform: translateY(0);
 }
+
+/* Answer selection state */
+.answer-option.selected {
+  background: #4a90e2;
+  border: 3px solid #2e5f8a;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
