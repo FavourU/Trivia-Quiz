@@ -5,11 +5,11 @@ describe('Score Calculation', () => {
   
   test('All correct answers should give 5/5 score', () => {
     const userAnswers = [
-      { selected: 'a. Korea', correct: 'a. Korea' },
-      { selected: 'b. Valentine', correct: 'b. Valentine' },
-      { selected: 'c. Red', correct: 'c. Red' },
-      { selected: 'a. Cupid', correct: 'a. Cupid' },
-      { selected: 'b. Rose', correct: 'b. Rose' }
+      { selected: 'a. Korea', correct: 'a. Korea', isCorrect: true },
+      { selected: 'b. Valentine', correct: 'b. Valentine', isCorrect: true },
+      { selected: 'c. Red', correct: 'c. Red', isCorrect: true },
+      { selected: 'a. Cupid', correct: 'a. Cupid', isCorrect: true },
+      { selected: 'b. Rose', correct: 'b. Rose', isCorrect: true }
     ];
     
     const score = calculateScore(userAnswers);
@@ -18,11 +18,11 @@ describe('Score Calculation', () => {
 
   test('All incorrect answers should give 0/5 score', () => {
     const userAnswers = [
-      { selected: 'b. Chad', correct: 'a. Korea' },
-      { selected: 'a. Christmas', correct: 'b. Valentine' },
-      { selected: 'a. Blue', correct: 'c. Red' },
-      { selected: 'b. Santa', correct: 'a. Cupid' },
-      { selected: 'c. Tulip', correct: 'b. Rose' }
+      { selected: 'b. Chad', correct: 'a. Korea', isCorrect: false },
+      { selected: 'a. Christmas', correct: 'b. Valentine', isCorrect: false },
+      { selected: 'a. Blue', correct: 'c. Red', isCorrect: false },
+      { selected: 'b. Santa', correct: 'a. Cupid', isCorrect: false },
+      { selected: 'c. Tulip', correct: 'b. Rose', isCorrect: false }
     ];
     
     const score = calculateScore(userAnswers);
@@ -31,11 +31,11 @@ describe('Score Calculation', () => {
 
   test('Mixed answers should calculate correctly (3 correct, 2 wrong)', () => {
     const userAnswers = [
-      { selected: 'a. Korea', correct: 'a. Korea' },      // correct
-      { selected: 'a. Christmas', correct: 'b. Valentine' }, // wrong
-      { selected: 'c. Red', correct: 'c. Red' },          // correct
-      { selected: 'b. Santa', correct: 'a. Cupid' },      // wrong
-      { selected: 'b. Rose', correct: 'b. Rose' }         // correct
+      { selected: 'a. Korea', correct: 'a. Korea', isCorrect: true },
+      { selected: 'a. Christmas', correct: 'b. Valentine', isCorrect: false },
+      { selected: 'c. Red', correct: 'c. Red', isCorrect: true },
+      { selected: 'b. Santa', correct: 'a. Cupid', isCorrect: false },
+      { selected: 'b. Rose', correct: 'b. Rose', isCorrect: true }
     ];
     
     const score = calculateScore(userAnswers);
@@ -48,5 +48,3 @@ describe('Score Calculation', () => {
     expect(score).toBe(0);
   });
 });
-
-// REMOVED the helper function - it was making tests pass incorrectly!
