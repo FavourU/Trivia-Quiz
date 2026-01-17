@@ -21,7 +21,7 @@ function calculateScore(userAnswers) {
   
   let correctCount = 0;
   userAnswers.forEach(answer => {
-    if (answer.isCorrect === true) {
+    if (answer.isCorrect) {  
       correctCount++;
     }
   });
