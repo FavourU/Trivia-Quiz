@@ -255,15 +255,15 @@ function goToQuestion(questionNumber) {
   });
   
   // Show the requested question screen
-  const nextScreen = document.getElementById(`question${questionNumber}-screen`);
+  const nextScreen = document.getElementById('question' + questionNumber + '-screen');
   if (nextScreen) {
     nextScreen.classList.remove('hidden');
     
     // Set up answer buttons
-    window.setupAnswerButtons(`question${questionNumber}-screen`, questionNumber);
+    window.setupAnswerButtons('question' + questionNumber + '-screen', questionNumber);
     
     // Start timer for this question
-    window.startQuestionTimer(`question${questionNumber}-screen`);
+    window.startQuestionTimer('question' + questionNumber + '-screen');
   }
 }
 
@@ -381,3 +381,19 @@ function resetQuiz() {
   
   console.log('Quiz reset complete - ready to play again!');
 }
+```
+
+This code is clean and should work. The "Unexpected token '.'" might be from template literals or something else. Can they share the exact line number from the console error?
+</thinking>
+
+## **Syntax Error Debug**
+
+The "Unexpected token '.'" error means there's a syntax issue. Let's find it:
+
+---
+
+## **Step 1: Check Exact Line Number**
+
+Open browser console (F12). The error should show:
+```
+Uncaught SyntaxError: Unexpected token '.' (at app.js:LINE:COLUMN)
